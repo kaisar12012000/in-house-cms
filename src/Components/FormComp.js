@@ -8,10 +8,13 @@ export default function FormComp() {
 
     const navigate = useNavigate()
 
-    const {ageGroupsState, skillsState} = useContext(AppContext)
+    const {skillsState} = useContext(AppContext)
 
-    const [ageGroups, setAgeGroups] = useState([...ageGroupsState?.ageGroups?.filter(grp => grp.type === "parent")])
+    const [ageGroups, setAgeGroups] = useState([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12])
     const [skills, setSkills] = useState([...skillsState?.skills])
+    const [upperLimit, setUpperLimit] = useState(0)
+    const [lowerLimit, setLowerLimit] = useState(0)
+    const [skill, setSkill] = useState(skills[0]?.skill)
 
     const {
         setArticles, setActivities, setArticlePriority, setActivityPriority
@@ -19,23 +22,34 @@ export default function FormComp() {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        const formData = new FormData(event.target)
+        // const formData = new FormData(event.target)
         // const prompt = formData.get("schema") === "parent" ? parentPromptTemplate : childPromptTemplate;
+        console.log({
+            upperLimit, lowerLimit,skill 
+        })
 
         navigate("/article", {state: JSON.stringify({
-            ageGroup: formData?.get("age-group"),
-            skill: formData.get("skill")
+            ageGroup: `${lowerLimit}-${upperLimit}`,
+            skill
         })})
     }
 
     const handleChange = (event) => {
         if (event?.target?.name === "schema") {
             console.log(event.target?.value)
-            const temp1 = ageGroupsState?.ageGroups?.filter(grp => grp?.type === event.target?.value)
+            const temp1 = ageGroups?.filter(grp => grp?.type === event.target?.value)
             const temp2 = skillsState?.skills?.filter(s => s?.type === event.target?.value)
             // console.log(temp)
             setAgeGroups(temp1)
             setSkills(temp2)
+        }
+        if (event?.target?.name === "lower-limit") {
+            console.log(event?.target?.value)
+            setLowerLimit(event?.target?.value)
+        } else if (event?.target?.name === "upper-limit") {
+            setUpperLimit(event?.target?.value)
+        } else {
+            setSkill(event?.target?.value)
         }
     }
 
@@ -59,17 +73,26 @@ export default function FormComp() {
                         <label htmlFor="age-group">
                             Age group:
                         </label>
-                        <select name='age-group'>
-                            {ageGroups.map(grp => (
-                                <option key={nanoid(6)} value={grp.ageGroup} >{grp.ageGroup}</option>
-                            ))}
-                        </select>
+                        <div className='input-container'>
+                            <label htmlFor='lower-limit'>Lower Limit:</label>
+                            <select value={lowerLimit} name="lower-limit">
+                                {ageGroups?.map(item => (
+                                    <option key={nanoid(6)} value={item}>{item}</option>
+                                ))}
+                            </select>
+                            <label htmlFor='upper-limit'>Upper Limit:</label>
+                            <select value={upperLimit} name="upper-limit">
+                                {ageGroups?.map(item => (
+                                    <option key={nanoid(6)} value={item}>{item}</option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
                     <div className='input-container'>
                         <label htmlFor="skill">
                             Skills:
                         </label>
-                        <select name='skill'>
+                        <select value={skill} name='skill'>
                             {skills.map(grp => (
                                 <option key={nanoid(6)} value={grp.skill} >{grp.skill}</option>
                             ))}

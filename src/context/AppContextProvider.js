@@ -4,16 +4,16 @@ import { AppContext } from './AppContext'
 export default function AppContextProvider({children}) {
     const [ageGroups, setAgeGroups] = useState([
         {id: "01", type: "parent", ageGroup: "1-2"},
-        {id: "02", type: "parent", ageGroup: "3-4"},
-        {id: "03", type: "parent", ageGroup: "5-6"}, 
-        {id: "04", type: "parent", ageGroup: "7-8"}, 
-        {id: "05", type: "parent", ageGroup: "9-10"}, 
-        {id: "06", type: "parent", ageGroup: "11-12"},
-        {id: "07", type: "child", ageGroup: "1.5-2.5"},
-        {id: "08", type: "child", ageGroup: "3.5-4.5"},
-        {id: "09", type: "child", ageGroup: "5.5-6.5"},
-        {id: "10", type: "child", ageGroup: "7.5-8.5"},
-        {id: "11", type: "child", ageGroup: "9.5-10.5"},
+        {id: "02", type: "child", ageGroup: "1.5-2.5"},
+        {id: "03", type: "parent", ageGroup: "3-4"},
+        {id: "04", type: "child", ageGroup: "3.5-4.5"},
+        {id: "05", type: "parent", ageGroup: "5-6"},
+        {id: "06", type: "child", ageGroup: "5.5-6.5"}, 
+        {id: "07", type: "parent", ageGroup: "7-8"}, 
+        {id: "08", type: "child", ageGroup: "7.5-8.5"},
+        {id: "09", type: "parent", ageGroup: "9-10"}, 
+        {id: "10", type: "child", ageGroup: "9.5-10.5"},
+        {id: "11", type: "parent", ageGroup: "11-12"},
         {id: "12", type: "child", ageGroup: "11.5-12.5"},
       ])
     const [skills, setSkills] = useState([

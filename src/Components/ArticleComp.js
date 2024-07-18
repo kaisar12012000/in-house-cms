@@ -10,7 +10,7 @@ import generatePDF, { Margin, Resolution, usePDF } from 'react-to-pdf';
 const sheetURI = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS3g3IYrHuOodXN8jaAg8h5--ZLaSLdZBk-yl45WjxDsDnxHOJi8O2HOW_Kpa-17w/pub?gid=714031361&single=true&output=csv";
 const GPT = "GPT";
 const GEMINI = "GEMINI";
-const gptApiKey = "sk-proj-jD8Zva97ynhJVdhV7EPxT3BlbkFJFdeoXIWyD75EdjkjWgCF"
+const gptApiKey = "sk-proj-Oj8a9C1vyByZoHGPxXchT3BlbkFJyDRLSmdsLgvlS06qaHYr"
 const genAIKey = "AIzaSyD9uz73qadW3X5tVN3PEfwY6U6VeYaeXN4"
 const gptEndpoint = "https://api.openai.com/v1/chat/completions"
 
